@@ -1,0 +1,11 @@
+django 
+djangorestframework 
+djangorestframework-simplejwt 
+django-cors-headers 
+django-filter 
+drf-yasg 
+weasyprint
+whitenoise
+gunicorn
+psycopg2-binary
+mysqlclient

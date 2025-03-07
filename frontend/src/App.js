@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
 import JobPortal from "./components/JobPortal";
+import PostJob from "./components/PostJob";
 import ResumeBuilder from "./components/ResumeBuilder";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -20,6 +21,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/job-portal" element={<JobPortal />} />
+            <Route path="/post-job" element={<PostJob />} />  {/* ✅ Add this */}
             <Route path="/resume-builder" element={<ResumeBuilder />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

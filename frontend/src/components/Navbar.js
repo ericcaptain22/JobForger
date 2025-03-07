@@ -15,7 +15,7 @@ const Navbar = () => {
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         <div className="text-xl font-bold">
           <Link to="/" className="hover:text-gray-300 transition">
-            Job Portal
+            JobForger
           </Link>
         </div>
         <div className="space-x-6">

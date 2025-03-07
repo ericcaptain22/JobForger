@@ -18,7 +18,7 @@ const Template2 = ({ resumeData }) => {
       <p>{resumeData.address || "Address"}</p>
 
       {/* Summary */}
-      <h1 className="text-left border-b-2 pb-4 border-green-700"></h1>
+      <h1 className="text-left border-b-2 pb-4 border-green-700">Professional</h1>
       <h2 className="text-xl font-semibold text-green-700 mt-4">Summary</h2>
       <p>{resumeData.summary || "Your professional summary goes here."}</p>
 

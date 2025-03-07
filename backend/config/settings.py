@@ -21,6 +21,15 @@ if DEBUG:
     import mimetypes
     mimetypes.add_type("application/javascript", ".js", True)
 
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),  # ✅ Short expiry for access token
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),  # ✅ Users stay logged in for 7 days
+    "ROTATE_REFRESH_TOKENS": True,  # ✅ New refresh token each time
+    "BLACKLIST_AFTER_ROTATION": True,  # ✅ Prevents reuse of old refresh tokens
+}
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -58,8 +67,11 @@ DATABASES = {
         'NAME': 'resume',                   # Your database name
         'USER': 'root',                 # Your MySQL username
         'PASSWORD': 'Kdb0017@',         # Your MySQL password
-        'HOST': '127.0.0.1',                    # Use '127.0.0.1' instead of 'localhost'
-        'PORT': '3306',                         # Default MySQL port
+        'HOST': 'localhost',            # Use '127.0.0.1' instead of 'localhost'
+        'PORT': '3306',                 # Default MySQL port
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
 

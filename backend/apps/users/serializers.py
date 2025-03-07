@@ -20,14 +20,14 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = ("id", "username", "email", "password", "user_type")
 
     def create(self, validated_data):
-        with transaction.atomic():
-            user = User.objects.create_user(
-                username=validated_data["username"],
-                email=validated_data["email"],
-                password=validated_data["password"],
-                user_type=validated_data["user_type"]
+        user = User.objects.create_user(
+            username=validated_data["username"],
+            email=validated_data["email"],
+            password=validated_data["password"],
+            user_type=validated_data["user_type"]
             )
-            return user
+        user.save()
+        return user
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()

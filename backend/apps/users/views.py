@@ -22,9 +22,12 @@ class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
 
-    def perform_create(self, serializer):
-        user = serializer.save()
-        connection.commit()  # ✅ Ensure data is immediately committed to MySQL
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()  # ✅ Save user in MySQL
+            return Response({"message": "User registered successfully", "user": UserSerializer(user).data}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginView(generics.GenericAPIView):
     serializer_class = LoginSerializer

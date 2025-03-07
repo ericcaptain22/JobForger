@@ -30,7 +30,7 @@ const Login = () => {
     <div className={`flex items-center justify-center min-h-screen ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"} transition-all`}>
       <div className="w-full max-w-md p-8 rounded-lg shadow-xl backdrop-blur-lg bg-opacity-60 bg-white dark:bg-gray-800">
         <h2 className={`text-3xl font-semibold text-center mb-6 animate-fadeIn ${darkMode ? "text-white" : "text-gray-900"}`}>
-          Welcome Back 👋
+          Welcome Back <span role="img" aria-label="rocket">👋</span>
         </h2>
         {error && <p className="text-red-500 text-center">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-4">

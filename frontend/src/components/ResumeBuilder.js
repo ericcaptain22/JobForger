@@ -6,7 +6,10 @@ import API from "../services/api";
 const ResumeBuilder = () => {
   const { darkMode } = useContext(ThemeContext);
   const [selectedTemplate, setSelectedTemplate] = useState("template1");
-
+  const [title, setTitle] = useState("");
+  const [summary, setSummary] = useState("");
+  const [skills, setSkills] = useState("");
+  const [message, setMessage] = useState("");
   const [resumeData, setResumeData] = useState({
     name: "", phone: "", email: "", linkedin: "", address: "",
     summary: "", skills: [], hobbies: [],
@@ -52,20 +55,33 @@ const ResumeBuilder = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage("");
+
     try {
-      await API.post("resumes/", resumeData);
-      alert("Resume Saved Successfully!");
+        const response = await API.post("api/resumes/", {
+            title,
+            summary,
+            skills: skills.split(",").map(skill => skill.trim()),  // ✅ Convert skills to array
+        });
+
+        if (response.status === 201) {
+            setMessage("✅ Resume saved successfully!");
+            setTitle("");
+            setSummary("");
+            setSkills("");
+        }
     } catch (error) {
-      alert("Error saving resume");
+        console.error("Error saving resume:", error);
+        setMessage("❌ Error saving resume. Please check your details.");
     }
-  };
+};
 
   return (
     <div className={`flex flex-col md:flex-row min-h-screen transition-all ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"}`}>
       
       {/* Form Section */}
       <div className="w-full md:w-1/2 p-6">
-        <h1 className="text-3xl font-bold text-center">Resume Builder 📝</h1>
+        <h1 className="text-3xl font-bold text-center">Resume Builder <span role="img" aria-label="rocket">📝</span></h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           
           {/* ✅ Profile Picture Upload */}

@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import UserResumeListView
+from .views import ResumeListCreateView, ResumeDetailView, UserResumeListView  # ✅ Added UserResumeListView
 
 urlpatterns = [
-    path("my-resumes/", UserResumeListView.as_view(), name="my-resumes"),  # ✅ Updated path
+    path("", ResumeListCreateView.as_view(), name="resume-list-create"),  # ✅ `/api/resumes/`
+    path("<int:pk>/", ResumeDetailView.as_view(), name="resume-detail"),  # ✅ `/api/resumes/{id}/`
+    path("my-resumes/", UserResumeListView.as_view(), name="user-resumes"),  # ✅ `/api/resumes/my-resumes/`
 ]
